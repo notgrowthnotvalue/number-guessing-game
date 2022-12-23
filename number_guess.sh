@@ -4,8 +4,8 @@
 PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
 
 # Resets the index to 1
-echo $($PSQL "TRUNCATE TABLE customers")
-echo $($PSQL "ALTER SEQUENCE customers_customer_id_seq RESTART WITH 1")
+#echo $($PSQL "TRUNCATE TABLE customers")
+#echo $($PSQL "ALTER SEQUENCE customers_customer_id_seq RESTART WITH 1")
 
 # generate a random variable with a 1 to 1000 range
 NUMBER=$(( RANDOM%1000 +1)) 
@@ -42,19 +42,15 @@ GUESS_GAME() {
     if [[ $USER_GUESS =~ ([^0-9]+)$ ]]
     then
       echo "That is not an integer, guess again:"
-      ((COUNT++))
-      ((GAMES_PLAYED++))
     else
       if [[ $NUMBER -lt $USER_GUESS ]]
       then
         echo "It's lower than that, guess again:"
         ((COUNT++))
-        ((GAMES_PLAYED++))
       elif [[ $NUMBER -gt $USER_GUESS ]]
       then
         echo "It's higher than that, guess again:"
         ((COUNT++))
-        ((GAMES_PLAYED++))
       elif [[ $NUMBER -eq $USER_GUESS ]] 
       then
         ((COUNT++))
